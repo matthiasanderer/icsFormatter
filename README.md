@@ -1,42 +1,7 @@
 icsFormatter
 ============
 
-My fork of the original ics.js
+My fork of the original [ics.js](https://github.com/matthiasanderer/icsFormatter)
 
-I took out the FileSaver.js and Blob.js parts as it better fit my needs.
-Please have a look at the original repository!! -- https://github.com/nwcell/ics.js
-(At least thats where I got my fork)
+Just added ability to put HTML in the body instead of plain text.
 
-PLEASE NOTE: I only tested this simplification with single events and on Chrome/Firefox !!
-
-
-My changes where applied to the download() function - have a look yourself :-)
-
-My suggested use is to have a onclick or controller/service function (in case you use Angular or stuff) that builds your nice calendar data:
-
-Example:
----------
-var buildICSEntry = function( javascriptExampleDateObject ){
-
-    	var calEntry = icsFormatter();
-
-    	var title = 'sometitlestring';
-    	var place = 'our secret meeting place';
-    	var begin = new Date(javascriptExampleDateObject);
-    	var end = new Date(Beginn.getTime() + 30*60000);
-
-    	var description = 'A very long and boring description of what is the agenda of this super exclusiv pow-wow';
-
-		calEntry.addEvent(title,description, place, begin.toUTCString(), begin.toUTCString());
-		calEntry.download('ourSecretMeeting');
- }
-
-
-/* Original Readme End */
-
-Credits
-------------------
-* [Travis Krause](https://github.com/nwcell): Me
-* [Kyle Hornberg](https://github.com/khornberg): Added multi event functionality and made everything a package firendly
-
-/* Original Readme End */
