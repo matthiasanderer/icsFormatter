@@ -49,7 +49,7 @@ var icsFormatter = function() {
                 typeof stop === 'undefined'
             ) {
                 return false;
-            };
+            }
 
             //TODO add time and time zone? use moment to format?
             var start_date = new Date(begin);
@@ -72,7 +72,7 @@ var icsFormatter = function() {
             // Since some calendars don't add 0 second events, we need to remove time if there is none...
             var start_time = '';
             var end_time = '';
-            if (start_minutes + start_seconds + end_minutes + end_seconds != 0) {
+            if (start_minutes + start_seconds + end_minutes + end_seconds !== 0) {
                 start_time = 'T' + start_hours + start_minutes + start_seconds;
                 end_time = 'T' + end_hours + end_minutes + end_seconds;
             }
@@ -109,8 +109,21 @@ var icsFormatter = function() {
             ext = (typeof ext !== 'undefined') ? ext : '.ics';
             filename = (typeof filename !== 'undefined') ? filename : 'calendar';
             var calendar = calendarStart + SEPARATOR + calendarEvents.join(SEPARATOR) + calendarEnd;
-            
             window.open( "data:text/calendar;charset=utf8," + escape(calendar));
         }
     };
 };
+
+if (typeof define === "function" && define.amd) {
+  /* AMD Format */
+  define("icsFormatter", [], function() {
+    return icsFormatter();
+  });
+} else if (typeof module === "object" && module.exports) {
+  /* CommonJS Format */
+  module.exports = icsFormatter();
+} else {
+  /* Plain Browser Support */
+  this.myModule = icsFormatter();
+}
+
