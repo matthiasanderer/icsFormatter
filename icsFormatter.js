@@ -83,7 +83,7 @@ var icsFormatter = function() {
             var calendarEvent = [
                 'BEGIN:VEVENT',
                 'CLASS:PUBLIC',
-                'X-ALT-DESC;FMTTYPE=text/html:' + description,
+                'DESCRIPTION:' + description,
                 'DTSTART;VALUE=DATE:' + start,
                 'DTEND;VALUE=DATE:' + end,
                 'LOCATION:' + location,
