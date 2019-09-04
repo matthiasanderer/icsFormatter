@@ -55,6 +55,10 @@ var icsFormatter = function() {
             var start_date = new Date(begin);
             var end_date = new Date(stop);
 
+            // apply timezone to start_date and end_date so we have "UTC" time values for getHours(), etc.
+            start_date.setMinutes(start_date.getMinutes() + start_date.getTimezoneOffset());
+            end_date.setMinutes(end_date.getMinutes() + end_date.getTimezoneOffset());
+
             var start_year = ("0000" + (start_date.getFullYear().toString())).slice(-4);
             var start_month = ("00" + ((start_date.getMonth() + 1).toString())).slice(-2);
             var start_day = ("00" + ((start_date.getDate()).toString())).slice(-2);
