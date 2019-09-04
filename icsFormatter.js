@@ -70,23 +70,25 @@ var icsFormatter = function() {
             var end_seconds = ("00" + (end_date.getSeconds().toString())).slice(-2);
 
             // Since some calendars don't add 0 second events, we need to remove time if there is none...
-            var start_time = '';
-            var end_time = '';
+            var start = '';
+            var end = '';
             if (start_hours + start_minutes + start_seconds + end_hours + end_minutes + end_seconds !== 0) {
-                // If time is midnight to midnight - then this is an all day event. Only add time if it's not
-                start_time = 'T' + start_hours + start_minutes + start_seconds;
-                end_time = 'T' + end_hours + end_minutes + end_seconds;
+                // time is not midnight to midnight - so we need to include the times and use them
+                start = ':' + start_year + start_month + start_day 'T' + start_hours + start_minutes + start_seconds + 'Z';
+                end = ':' + end_year + end_month + end_day + 'T' + end_hours + end_minutes + end_seconds + 'Z';
             }
-
-            var start = start_year + start_month + start_day + start_time;
-            var end = end_year + end_month + end_day + end_time;
+            else {
+                // this is an all day event - time is not needed (will be ignored by "VALUE=DATE" sub-statement)
+                start = ';VALUE=DATE:' + start_year + start_month + start_day;
+                end = ';VALUE=DATE:' + end_year + end_month + end_day;
+            }
 
             var calendarEvent = [
                 'BEGIN:VEVENT',
                 'CLASS:PUBLIC',
                 'DESCRIPTION:' + description,
-                'DTSTART;VALUE=DATE:' + start,
-                'DTEND;VALUE=DATE:' + end,
+                'DTSTART' + start,
+                'DTEND' + end,
                 'LOCATION:' + location,
                 'SUMMARY;LANGUAGE=en-us:' + subject,
                 'TRANSP:TRANSPARENT',
