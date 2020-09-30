@@ -1,6 +1,8 @@
 icsFormatter
 ============
 
+## This repository is not under active development and contains several issues. There are a lot of forks now that might work better.
+
 My fork of the original ics.js
 
 I took out the FileSaver.js and Blob.js parts as it better fit my needs.
