@@ -11,7 +11,7 @@ var buildICSEntry = function( javascriptExampleDateObject ){
     	var title = 'sometitlestring';
     	var place = 'our secret meeting place';
     	var begin = new Date(javascriptExampleDateObject);
-    	var end = new Date(Beginn.getTime() + 30*60000);
+    	var end = new Date(begin.getTime() + 30*60000);
 
     	var description = 'A very long and boring description of what is the agenda of this super exclusiv pow-wow';
 
